@@ -19,23 +19,32 @@ function add(){
 }
 
 function uploadbackground(){
-    ctx.drawImage(background_imageTag,0,0,canvas.width,canvas.height);
-    ctx.drawImage(greencar_imgTag,greencar_x,greencar_y,greencar_width,greencar_height);
+    ctx.drawImage(background_imgTag,0,0,canvas.width,canvas.height);
 }
+function uploadgreencar(){
+    ctx.drawImage(greencar_imgTag,greencar_x,greencar_y,greencar_width,greencar_height);
 
+}
+    
 window.addEventListener("keydown",my_keydown);
-function my_keydown(){
-    if (keydown==38){
+function my_keydown(e){
+    keypressed=e.keyCode
+    console.log(keypressed)
+    if (keypressed==38){
       up();
       console.log("up")
     }
-    else if(keydown==40){
+    else if( keypressed==40){
      down();
      console.log("down")
     }
-    else if(keydown==37){
+    else if( keypressed==37){
         left();
         console.log("left")
+    }
+    else if( keypressed==39){
+        right();
+        console.log("right")
     }
 }
 
@@ -50,8 +59,10 @@ function up(){
 
 function down(){
     if (greencar_y<=400){
-        geencar_y+=10
+        greencar_y+=10
         console.log("when down arrow pressed, x="+greencar_x+"|| y=+"+greencar_y)
+        uploadbackground();
+      uploadgreencar();
     }
 }
 
@@ -59,6 +70,8 @@ function left(){
     if (greencar_x>=0){
         greencar_x-=10
         console.log("when left arrow pressed, x="+greencar_x+"|| y=+"+greencar_y)
+        uploadbackground();
+      uploadgreencar();
     }
 }
 
@@ -66,5 +79,7 @@ function right(){
     if (greencar_x<=700){
         greencar_x+=10
         console.log("when right arrow pressed, x="+greencar_x+"|| y=+"+greencar_y)
+        uploadbackground();
+      uploadgreencar();
     }
 }
